@@ -35,32 +35,40 @@ PENSION_VALUE_MONTH = 0.0
 # outgoings
 RENT_MONTH = 624.0
 
-def taxToPay(salary):
+# months to consider
+MONTHS = 12 * 5
+
+
+def tax_to_pay(salary):
     out = 0.0
-    if (salary > BASIC_BAND_MONTH):
-      out = (BASIC_BAND_MONTH - PERSONAL_ALLOWANCE_MONTH) * BASIC_RATE
-      out += (salary - BASIC_BAND_MONTH) * HIGHER_RATE
-    elif (salary > PERSONAL_ALLOWANCE_MONTH):
-      out = (salary - PERSONAL_ALLOWANCE_MONTH) * BASIC_RATE
+    if salary > BASIC_BAND_MONTH:
+        out = (BASIC_BAND_MONTH - PERSONAL_ALLOWANCE_MONTH) * BASIC_RATE
+        out += (salary - BASIC_BAND_MONTH) * HIGHER_RATE
+    elif salary > PERSONAL_ALLOWANCE_MONTH:
+        out = (salary - PERSONAL_ALLOWANCE_MONTH) * BASIC_RATE
     return out
 
-def nationalInsurance(salary):
+
+def national_insurance(salary):
     out = 0.0
-    if (salary > NATIONAL_INSURANCE_UPPER_LIMIT):
-      out = (NATIONAL_INSURANCE_UPPER_LIMIT - NATIONAL_INSURANCE_LOWER_LIMIT) * NATIONAL_INSURANCE_LOWER_RATE
-      out += (salary - NATIONAL_INSURANCE_UPPER_LIMIT) * NATIONAL_INSURANCE_UPPER_RATE
+    if salary > NATIONAL_INSURANCE_UPPER_LIMIT:
+        out = (NATIONAL_INSURANCE_UPPER_LIMIT - NATIONAL_INSURANCE_LOWER_LIMIT) * NATIONAL_INSURANCE_LOWER_RATE
+        out += (salary - NATIONAL_INSURANCE_UPPER_LIMIT) * NATIONAL_INSURANCE_UPPER_RATE
     else:
-      out = (salary - NATIONAL_INSURANCE_LOWER_LIMIT) * NATIONAL_INSURANCE_LOWER_RATE
+        out = (salary - NATIONAL_INSURANCE_LOWER_LIMIT) * NATIONAL_INSURANCE_LOWER_RATE
     return out
 
-def studentLoan(salary):
+
+def student_loan(salary):
     out = 0.0
-    if (salary > STUDENT_LOAN_BAND_MONTH):
+    if salary > STUDENT_LOAN_BAND_MONTH:
         out = (salary - STUDENT_LOAN_BAND_MONTH) * STUDENT_LOAN_RATE
     return out
 
+
 def pension(salary):
     return salary * 0.05
+
 
 payForTax = BASE_SALARY_MONTH - pension(BASE_SALARY_MONTH)
 
@@ -68,15 +76,15 @@ print "Tax free pay: " + str(BASE_SALARY_MONTH)
 
 print "Pension: " + str(pension(BASE_SALARY_MONTH))
 
-print "Tax paid: " + str(taxToPay(payForTax))
+print "Tax paid: " + str(tax_to_pay(payForTax))
 
-print "National insurance: " + str(nationalInsurance(payForTax))
+print "National insurance: " + str(national_insurance(payForTax))
 
-print "Student loan: " + str(studentLoan(payForTax))
+print "Student loan: " + str(student_loan(payForTax))
 
 print "--------------------------------------------------------"
 
-outgoings = pension(BASE_SALARY_MONTH) + taxToPay(payForTax) + nationalInsurance(payForTax) + studentLoan(payForTax)
+outgoings = pension(BASE_SALARY_MONTH) + tax_to_pay(payForTax) + national_insurance(payForTax) + student_loan(payForTax)
 
 print "Total tax etc: " + str(outgoings)
 

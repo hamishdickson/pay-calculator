@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 BASE_SALARY = 1.0
 BASE_SALARY_MONTH = BASE_SALARY / 12.0
 
@@ -63,8 +65,19 @@ def pension(salary):
 payForTax = BASE_SALARY_MONTH - pension(BASE_SALARY_MONTH)
 
 print "Tax free pay: " + str(BASE_SALARY_MONTH)
+
 print "Pension: " + str(pension(BASE_SALARY_MONTH))
 
 print "Tax paid: " + str(taxToPay(payForTax))
+
 print "National insurance: " + str(nationalInsurance(payForTax))
+
 print "Student loan: " + str(studentLoan(payForTax))
+
+print "--------------------------------------------------------"
+
+outgoings = pension(BASE_SALARY_MONTH) + taxToPay(payForTax) + nationalInsurance(payForTax) + studentLoan(payForTax)
+
+print "Total tax etc: " + str(outgoings)
+
+print "Total going into account (ish): " + str(BASE_SALARY_MONTH - outgoings)

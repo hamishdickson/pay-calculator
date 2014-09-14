@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb4c2534-4228-4ab0-a918-2c4ad9a41248" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/realPay.py" afterPath="$PROJECT_DIR$/realPay.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pay-calculator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,7 +38,7 @@
       <file leaf-file-name="realPay.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/realPay.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="9" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.34545454" vertical-offset="630" max-vertical-offset="1455">
+            <state line="118" column="28" selection-start="2986" selection-end="2986" vertical-scroll-proportion="0.8" vertical-offset="1110" max-vertical-offset="1935">
               <folding />
             </state>
           </provider>
@@ -309,7 +309,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/realPay.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="9" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.34545454" vertical-offset="630" max-vertical-offset="1455">
+        <state line="118" column="28" selection-start="2986" selection-end="2986" vertical-scroll-proportion="0.8" vertical-offset="1110" max-vertical-offset="1935">
           <folding />
         </state>
       </provider>

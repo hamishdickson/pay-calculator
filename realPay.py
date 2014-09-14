@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-BASE_SALARY = 1.0
+BASE_SALARY = 42379.0
 BASE_SALARY_MONTH = BASE_SALARY / 12.0
 
 # tax fun
@@ -38,6 +38,13 @@ RENT_MONTH = 624.0
 # months to consider
 MONTHS = 12 * 5
 
+# savings
+SAVINGS_RATE = 0.05
+
+__savings = []
+__base = []
+__total_tax = []
+
 
 def tax_to_pay(salary):
     out = 0.0
@@ -70,22 +77,47 @@ def pension(salary):
     return salary * 0.05
 
 
-payForTax = BASE_SALARY_MONTH - pension(BASE_SALARY_MONTH)
+def total_tax_stuff(salary):
+    pay_for_tax = salary - pension(salary)
+    return pension(salary) + tax_to_pay(pay_for_tax) + national_insurance(pay_for_tax) + student_loan(pay_for_tax)
+
+
+def savings(salary):
+    return salary * SAVINGS_RATE
+
+
+def create_savings_graph(salary):
+    __base.append(salary)
+    __savings.append(savings(salary))
+    __total_tax.append(total_tax_stuff(salary))
+
+
+__pay_for_tax = BASE_SALARY_MONTH - pension(BASE_SALARY_MONTH)
 
 print "Tax free pay: " + str(BASE_SALARY_MONTH)
 
 print "Pension: " + str(pension(BASE_SALARY_MONTH))
 
-print "Tax paid: " + str(tax_to_pay(payForTax))
+print "Tax paid: " + str(tax_to_pay(__pay_for_tax))
 
-print "National insurance: " + str(national_insurance(payForTax))
+print "National insurance: " + str(national_insurance(__pay_for_tax))
 
-print "Student loan: " + str(student_loan(payForTax))
+print "Student loan: " + str(student_loan(__pay_for_tax))
 
 print "--------------------------------------------------------"
 
-outgoings = pension(BASE_SALARY_MONTH) + tax_to_pay(payForTax) + national_insurance(payForTax) + student_loan(payForTax)
+outgoings = total_tax_stuff(BASE_SALARY_MONTH)
 
 print "Total tax etc: " + str(outgoings)
 
 print "Total going into account (ish): " + str(BASE_SALARY_MONTH - outgoings)
+
+for x in range(MONTHS):
+    create_savings_graph(BASE_SALARY_MONTH)
+
+plt.plot(__savings, label="savings")
+plt.plot(__base, label="base")
+plt.plot(__total_tax, label="total tax")
+plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
+           ncol=2, mode="expand", borderaxespad=0.)
+plt.show()

@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-BASE_SALARY = 42379.0
+BASE_SALARY = 1.0
 BASE_SALARY_MONTH = BASE_SALARY / 12.0
 
 # tax fun
@@ -38,10 +38,13 @@ RENT_MONTH = 624.0
 # months to consider
 MONTHS = 12 * 5
 
-# savings
-SAVINGS_RATE = 0.05
+# savings - I actually save a bit more than this, but it's an easy approx for the future
+SAVINGS_RATE = 0.10
+
+ISA_INTEREST_RATE = 1.01
 
 __savings = []
+__savings_total = []
 __base = []
 __total_tax = []
 
@@ -89,6 +92,7 @@ def savings(salary):
 def create_savings_graph(salary):
     __base.append(salary)
     __savings.append(savings(salary))
+    __savings_total.append(sum(__savings) * ISA_INTEREST_RATE)
     __total_tax.append(total_tax_stuff(salary))
 
 
@@ -113,9 +117,15 @@ print "Total tax etc: " + str(outgoings)
 print "Total going into account (ish): " + str(BASE_SALARY_MONTH - outgoings)
 
 for x in range(MONTHS):
+    # assume a pay rise over 3% every year (hahahaha!!)
+    if x % 12 == 0:
+        BASE_SALARY_MONTH *= 1.03
+        print "woooo more money!"
+
     create_savings_graph(BASE_SALARY_MONTH)
 
 plt.plot(__savings, label="savings")
+plt.plot(__savings_total, label="savings total")
 plt.plot(__base, label="base")
 plt.plot(__total_tax, label="total tax")
 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,

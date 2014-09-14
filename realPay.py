@@ -124,6 +124,9 @@ for x in range(MONTHS):
 
     create_savings_graph(BASE_SALARY_MONTH)
 
+print "--------------------------------------------------------"
+print "Total savings: " + str(__savings_total[MONTHS - 1])
+
 plt.plot(__savings, label="savings")
 plt.plot(__savings_total, label="savings total")
 plt.plot(__base, label="base")

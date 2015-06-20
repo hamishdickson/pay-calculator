@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 BASE_SALARY = 1.0
 BASE_SALARY_MONTH = BASE_SALARY / 12.0
 
+BONUS_RATE = 0.25
+
 # tax fun
 BASIC_RATE = 0.2
 HIGHER_RATE = 0.4
@@ -39,11 +41,12 @@ RENT_MONTH = 624.0
 MONTHS = 12 * 5
 
 # savings - I actually save a bit more than this, but it's an easy approx for the future
-SAVINGS_RATE = 0.10
+SAVINGS_RATE = 0.25
+INITIAL_SAVINGS = 1.0
 
 ISA_INTEREST_RATE = 1.01
 
-__savings = []
+__savings = [INITIAL_SAVINGS]
 __savings_total = []
 __base = []
 __total_tax = []
@@ -117,10 +120,12 @@ print "Total tax etc: " + str(outgoings)
 print "Total going into account (ish): " + str(BASE_SALARY_MONTH - outgoings)
 
 for x in range(MONTHS):
-    # assume a pay rise over 3% every year (hahahaha!!)
     if x % 12 == 0:
-        BASE_SALARY_MONTH *= 1.03
-        print "woooo more money!"
+        # assume 50% of full bonus... just in case
+        print "bonus (min, pre-tax): " + str(BASE_SALARY * BONUS_RATE * 0.5)
+        # assume a pay rise over 2% every year
+        BASE_SALARY_MONTH *= 1.02
+        print "woooo more money! New base: " + str(BASE_SALARY_MONTH)
 
     create_savings_graph(BASE_SALARY_MONTH)
 

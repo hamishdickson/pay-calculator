@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-BASE_SALARY = 1.0
+BASE_SALARY = 55000.0
 BASE_SALARY_MONTH = BASE_SALARY / 12.0
 
 BONUS_RATE = 0.25

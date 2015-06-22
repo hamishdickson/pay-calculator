@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-BASE_SALARY = 55000.0
+BASE_SALARY = float(raw_input('Base? '))
 BASE_SALARY_MONTH = BASE_SALARY / 12.0
 
 BONUS_RATE = 0.25
@@ -38,11 +38,11 @@ PENSION_VALUE_MONTH = 0.0
 RENT_MONTH = 624.0
 
 # months to consider
-MONTHS = 12 * 5
+MONTHS = 12 * 1
 
 # savings - I actually save a bit more than this, but it's an easy approx for the future
 SAVINGS_RATE = 0.25
-INITIAL_SAVINGS = 1.0
+INITIAL_SAVINGS = float(raw_input("Initial savings? "))
 
 ISA_INTEREST_RATE = 1.01
 
@@ -98,6 +98,10 @@ def create_savings_graph(salary):
     __savings_total.append(sum(__savings) * ISA_INTEREST_RATE)
     __total_tax.append(total_tax_stuff(salary))
 
+
+print "Base: " + str(BASE_SALARY)
+
+print "Initial savings: " + str(INITIAL_SAVINGS)
 
 __pay_for_tax = BASE_SALARY_MONTH - pension(BASE_SALARY_MONTH)
 

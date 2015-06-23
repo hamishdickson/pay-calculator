@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 
-BASE_SALARY = float(raw_input('Base? '))
+BASE_SALARY = float(raw_input('Base....: '))
 BASE_SALARY_MONTH = BASE_SALARY / 12.0
 
-BONUS_RATE = 0.25
+BONUS_RATE = float(raw_input('Typical bonus rate....: '))
 
 # tax fun
 BASIC_RATE = 0.2
@@ -42,7 +42,7 @@ MONTHS = 12 * 1
 
 # savings - I actually save a bit more than this, but it's an easy approx for the future
 SAVINGS_RATE = 0.25
-INITIAL_SAVINGS = float(raw_input("Initial savings? "))
+INITIAL_SAVINGS = float(raw_input("Initial savings....: "))
 
 ISA_INTEREST_RATE = 1.01
 
@@ -134,7 +134,7 @@ for x in range(MONTHS):
     create_savings_graph(BASE_SALARY_MONTH)
 
 print "--------------------------------------------------------"
-print "Total savings: " + str(__savings_total[MONTHS - 1])
+print "Total savings (after " + str(MONTHS) + " months): " + str(__savings_total[MONTHS - 1])
 
 plt.plot(__savings, label="savings")
 plt.plot(__savings_total, label="savings total")

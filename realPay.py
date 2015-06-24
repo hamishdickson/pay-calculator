@@ -103,6 +103,8 @@ print "Base: " + str(BASE_SALARY)
 
 print "Initial savings: " + str(INITIAL_SAVINGS)
 
+print "--------------------------------------------------------"
+
 __pay_for_tax = BASE_SALARY_MONTH - pension(BASE_SALARY_MONTH)
 
 print "Tax free pay: " + str(BASE_SALARY_MONTH)
@@ -126,7 +128,9 @@ print "Total going into account (ish): " + str(BASE_SALARY_MONTH - outgoings)
 for x in range(MONTHS):
     if x % 12 == 0:
         # assume 50% of full bonus... just in case
-        print "bonus (min, pre-tax): " + str(BASE_SALARY * BONUS_RATE * 0.5)
+        bonus = BASE_SALARY * BONUS_RATE
+        print "bonus (min, pre-tax): " + str(bonus)
+        #__savings.append(bonus) // todo apply tax et al
         # assume a pay rise over 2% every year
         BASE_SALARY_MONTH *= 1.02
         print "woooo more money! New base: " + str(BASE_SALARY_MONTH)

@@ -62,6 +62,12 @@ def tax_to_pay(salary):
     return out
 
 
+def tax_on_bonus(bonus_in):
+    # todo do tax banding
+    # assume you're in the basic band when you get your bonus
+    return bonus_in * BASIC_RATE
+
+
 def national_insurance(salary):
     out = 0.0
     if salary > NATIONAL_INSURANCE_UPPER_LIMIT:
@@ -70,6 +76,11 @@ def national_insurance(salary):
     else:
         out = (salary - NATIONAL_INSURANCE_LOWER_LIMIT) * NATIONAL_INSURANCE_LOWER_RATE
     return out
+
+
+def national_insurance_on_bonus(bonus_in):
+    # todo band this
+    return bonus_in * NATIONAL_INSURANCE_UPPER_RATE
 
 
 def student_loan(salary):
@@ -130,7 +141,7 @@ for x in range(MONTHS):
         # assume 50% of full bonus... just in case
         bonus = BASE_SALARY * BONUS_RATE
         print "bonus (min, pre-tax): " + str(bonus)
-        #__savings.append(bonus) // todo apply tax et al
+        print "bonus (after tax etc): " + str(bonus - tax_on_bonus(bonus) - national_insurance_on_bonus(bonus))
         # assume a pay rise over 2% every year
         BASE_SALARY_MONTH *= 1.02
         print "woooo more money! New base: " + str(BASE_SALARY_MONTH)

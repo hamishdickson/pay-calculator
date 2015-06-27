@@ -23,6 +23,7 @@ STUDENT_LOAN_INTEREST_RATE = 0.015
 STUDENT_LOAN_RATE = 0.09
 STUDENT_LOAN_BAND = 16910.0
 STUDENT_LOAN_BAND_MONTH = STUDENT_LOAN_BAND / 12.0
+INITIAL_STUDENT_LOAN_LEFT = float(raw_input('Initial student loan left to pay....: '))
 
 # national insurance
 NATIONAL_INSURANCE_LOWER_LIMIT = 663.0
@@ -42,6 +43,7 @@ MONTHS = 12 * 1
 
 # savings - I actually save a bit more than this, but it's an easy approx for the future
 SAVINGS_RATE = 0.25
+TYPICAL_SAVINGS = float(raw_input("Typical monthly savings...: "))
 INITIAL_SAVINGS = float(raw_input("Initial savings....: "))
 
 ISA_INTEREST_RATE = 1.01

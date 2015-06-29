@@ -24,6 +24,7 @@ STUDENT_LOAN_RATE = 0.09
 STUDENT_LOAN_BAND = 16910.0
 STUDENT_LOAN_BAND_MONTH = STUDENT_LOAN_BAND / 12.0
 INITIAL_STUDENT_LOAN_LEFT = float(raw_input('Initial student loan left to pay....: '))
+_student_loan_paid = 0.0
 
 # national insurance
 NATIONAL_INSURANCE_LOWER_LIMIT = 663.0
@@ -86,6 +87,10 @@ def national_insurance_on_bonus(bonus_in):
 
 
 def student_loan(salary):
+    """Student loan.
+       Annoyingly, your student loan is taken out monthly, but it's only checked how much you
+       owe yearly - that means if you owe £100 at the beginning of the year, then unless you
+       do something you will overpay during the year"""
     out = 0.0
     if salary > STUDENT_LOAN_BAND_MONTH:
         out = (salary - STUDENT_LOAN_BAND_MONTH) * STUDENT_LOAN_RATE
@@ -107,7 +112,8 @@ def savings(salary):
 
 def create_savings_graph(salary):
     __base.append(salary)
-    __savings.append(savings(salary))
+    #__savings.append(savings(salary))
+    __savings.append(TYPICAL_SAVINGS)
     __savings_total.append(sum(__savings) * ISA_INTEREST_RATE)
     __total_tax.append(total_tax_stuff(salary))
 

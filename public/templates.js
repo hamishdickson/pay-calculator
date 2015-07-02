@@ -1,0 +1,1 @@
+angular.module("MyApp").run(["$templateCache", function($templateCache) {$templateCache.put("views/calc.html","<div class=\"panel col-md-6\">\n  <h2>pay-calculator</h2>\n  <div>\n    <p>Test: {{test}}</p>\n  </div>\n</div>\n");}]);

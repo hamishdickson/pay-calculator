@@ -7,7 +7,7 @@
             restrict: 'E',
             templateUrl: 'pay-calculator/public/views/calc.html',
             controller: function () {
-
+                this.test = "test";
             },
             controllerAs: "calc"
         };

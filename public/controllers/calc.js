@@ -5,7 +5,7 @@
 
         return {
             restrict: 'E',
-            templateUrl: 'public/views/calc.html',
+            templateUrl: 'pay-calculator/public/views/calc.html',
             controller: function () {
 
             },

@@ -28,7 +28,7 @@ gulp.task('compress', function() {
 
 gulp.task('templates', function() {
     gulp.src('public/views/**/*.html')
-        .pipe(templateCache({ root: 'views', module: 'MyApp' }))
+        .pipe(templateCache({ root: 'views', module: 'CalcApp' }))
         .pipe(gulp.dest('public'));
 });
 

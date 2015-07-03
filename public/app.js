@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('TimerApp', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
-                                         'main-controller', 'countdown-directive', 'timer-directive']);
+                                         'main-controller', 'calc-directive']);
 
     app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
         $locationProvider.html5Mode(true);

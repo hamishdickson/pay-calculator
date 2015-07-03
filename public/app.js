@@ -7,7 +7,7 @@
         
         $routeProvider
             .when('/pay-calculator', {
-                templateUrl: 'public/views/home.html',
+                templateUrl: 'pay-calculator/public/views/home.html',
                 controller: 'MainController'
             })
             .otherwise({

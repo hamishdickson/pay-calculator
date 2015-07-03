@@ -6,7 +6,7 @@
         $locationProvider.html5Mode(true);
         
         $routeProvider
-            .when('/', {
+            .when('/pay-calculator', {
                 templateUrl: 'public/views/home.html',
                 controller: 'MainController'
             })

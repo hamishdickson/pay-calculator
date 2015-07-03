@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('TimerApp', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
+    var app = angular.module('CalcApp', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
                                          'main-controller', 'calc-directive']);
 
     app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {

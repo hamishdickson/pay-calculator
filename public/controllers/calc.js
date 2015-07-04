@@ -1,13 +1,13 @@
 (function () {
     var app = angular.module('calc-directive', []);
 
-    app.directive('calc', function () {
+    app.directive('calc', [ '$scope', function ($scope) {
 
         return {
             restrict: 'E',
             templateUrl: 'pay-calculator/public/views/calc.html',
             controller: function () {
-                this.BASE_SALARY = 0.0;
+                $scope.BASE_SALARY = 0.0;
                 this.BASE_SALARY_MONTH = BASE_SALARY / 12.0;
 
                 this.BONUS_RATE = 0.0;
@@ -72,5 +72,5 @@
             },
             controllerAs: "calc"
         };
-    });
+    }]);
 })();

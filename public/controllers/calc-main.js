@@ -1,7 +1,7 @@
 (function () {
-    var app = angular.module('main-controller', []);
+    var app = angular.module('main-calc-controller', []);
 
-    app.controller('MainController', function(){
+    app.controller('MainCalcController', function(){
 
     });
 })();

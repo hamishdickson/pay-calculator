@@ -5,7 +5,7 @@
 
         return {
             restrict: 'E',
-            templateUrl: 'pay-calculator/public/views/calc.html',
+            templateUrl: 'public/views/calc.html',
             controller: function () {
                 $scope.BASE_SALARY = 0.0;
                 this.BASE_SALARY_MONTH = BASE_SALARY / 12.0;
@@ -32,7 +32,7 @@
                 this.STUDENT_LOAN_BAND_MONTH = STUDENT_LOAN_BAND / 12.0;
                 this.INITIAL_STUDENT_LOAN_LEFT = 0.0;
 
-                this._student_loan_paid = 0.0
+                this._student_loan_paid = 0.0;
 
                 // national insurance
                 this.NATIONAL_INSURANCE_LOWER_LIMIT = 663.0;
@@ -48,7 +48,7 @@
                 this.RENT_MONTH = 624.0;
 
                 // months to consider
-                this.MONTHS = 12 * 1;
+                this.MONTHS = 12;
 
                 // savings - I actually save a bit more than this, but it's an easy approx for the future
                 this.SAVINGS_RATE = 0.25;

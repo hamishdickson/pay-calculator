@@ -1,14 +1,14 @@
 (function () {
     var app = angular.module('CalcApp', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
-                                         'main-controller', 'calc-directive']);
+                                         'main-calc-controller', 'calc-directive']);
 
     app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
         $locationProvider.html5Mode(true);
         
         $routeProvider
             .when('/pay-calculator', {
-                templateUrl: 'pay-calculator/public/views/home.html',
-                controller: 'MainController'
+                templateUrl: 'public/views/home.html',
+                controller: 'MainCalcController'
             })
             .otherwise({
                 redirectTo: '/'

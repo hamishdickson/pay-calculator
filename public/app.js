@@ -2,7 +2,7 @@
     var app = angular.module('CalcApp', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
                                          'main-controller', 'calc-directive']);
 
-    app.config(['$locationProvider', '$routeProvider', '$scope', function ($locationProvider, $routeProvider, $scope) {
+    app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
         $locationProvider.html5Mode(true);
         
         $routeProvider

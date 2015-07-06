@@ -1,19 +1,21 @@
 (function () {
-    var app = angular.module('calc-directive', []);
+    var app = angular.module('calc-directive', ['chart.js']);
 
-    app.directive('calc', function () {
+    app.directive('calc', [function () {
 
         return {
             restrict: 'E',
             templateUrl: 'public/views/calc.html',
-            controller: function () {
+            controller: function ($scope) {
 
-                this.baseSalary = 0.0;
-                this.savings = 0.0;
-                this.studentLoan = 0.0;
+                $scope.baseSalary = 55000.0;
+                $scope.savings = 0.0;
+                $scope.studentLoan = 0.0;
 
-                this.getMonthPay = function() {
-                    return this.baseSalary / 12;
+
+
+                $scope.getMonthPay = function() {
+                    return $scope.baseSalary / 12;
                 };
 
                 var BASIC_RATE = 0.2;
@@ -33,76 +35,58 @@
                 var NATIONAL_INSURANCE_LOWER_RATE = 0.12;
                 var NATIONAL_INSURANCE_UPPER_RATE = 0.02;
 
-                this.taxToPay = function() {
+                $scope.taxToPay = function() {
                     var out = 0.0;
-                    if (this.baseSalary > 0) {
-                        if (this.baseSalary > BASIC_BAND_MONTH) {
+                    if ($scope.baseSalary > 0) {
+                        if ($scope.baseSalary > BASIC_BAND_MONTH) {
                             out = (BASIC_BAND_MONTH - PERSONAL_ALLOWANCE_MONTH) * BASIC_RATE;
-                            out += (this.baseSalary - BASIC_BAND_MONTH) * HIGHER_RATE;
-                        } else if (this.baseSalary > PERSONAL_ALLOWANCE_MONTH) {
-                            out = (this.baseSalary - PERSONAL_ALLOWANCE_MONTH) * BASIC_RATE
+                            out += ($scope.baseSalary - BASIC_BAND_MONTH) * HIGHER_RATE;
+                        } else if ($scope.baseSalary > PERSONAL_ALLOWANCE_MONTH) {
+                            out = ($scope.baseSalary - PERSONAL_ALLOWANCE_MONTH) * BASIC_RATE
                         }
                     }
                     return out;
                 };
 
-                this.getMonthlyTax = function() {
-                    return this.taxToPay() / 12;
+                $scope.getMonthlyTax = function() {
+                    return $scope.taxToPay() / 12;
                 };
 
-                this.nationalInsurance = function() {
+                $scope.nationalInsurance = function() {
                     var out = 0.0;
-                    if (this.baseSalary > 0) {
-                        if (this.baseSalary > NATIONAL_INSURANCE_UPPER_LIMIT) {
+                    if ($scope.baseSalary > 0) {
+                        if ($scope.baseSalary > NATIONAL_INSURANCE_UPPER_LIMIT) {
                             out = (NATIONAL_INSURANCE_UPPER_LIMIT - NATIONAL_INSURANCE_LOWER_LIMIT) * NATIONAL_INSURANCE_LOWER_RATE;
-                            out += (this.baseSalary - NATIONAL_INSURANCE_UPPER_LIMIT) * NATIONAL_INSURANCE_UPPER_RATE;
+                            out += ($scope.baseSalary - NATIONAL_INSURANCE_UPPER_LIMIT) * NATIONAL_INSURANCE_UPPER_RATE;
                         } else {
-                            out = (this.baseSalary - NATIONAL_INSURANCE_LOWER_LIMIT) * NATIONAL_INSURANCE_LOWER_RATE
+                            out = ($scope.baseSalary - NATIONAL_INSURANCE_LOWER_LIMIT) * NATIONAL_INSURANCE_LOWER_RATE
                         }
                     }
                     return out;
                 };
 
-                this.payInPocket = function() {
-                    return this.baseSalary - this.taxToPay() - this.nationalInsurance();
+                $scope.payInPocket = function() {
+                    var pay = $scope.baseSalary - $scope.taxToPay() - $scope.nationalInsurance();
+                    return pay;
                 };
 
 
-                this.payInPocketMonthly = function() {
-                    return this.payInPocket() / 12;
+                $scope.payInPocketMonthly = function() {
+                    var pay = $scope.payInPocket() / 12;
+                    return pay;
                 };
-
 
 
                 // pie chart
-                var ctx = document.getElementById("myChart").getContext("2d");
+                $scope.labels = ["Take home", "Total tax", "Mail-Order Sales"];
+                $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100];
 
-                var data = [
-                    {
-                        value: 100,
-                        color:"#F7464A",
-                        highlight: "#FF5A5E",
-                        label: "Red"
-                    },
-                    {
-                        value: 55,
-                        color: "#46BFBD",
-                        highlight: "#5AD3D1",
-                        label: "Green"
-                    },
-                    {
-                        value: 100,
-                        color: "#FDB45C",
-                        highlight: "#FFC870",
-                        label: "Yellow"
-                    }
-                ];
+                $scope.newPie = function() {
+                    $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100];
+                }
 
-                new Chart(ctx).Doughnut(data, {
-                    animateScale: true
-                });
             },
             controllerAs: "calc"
         };
-    });
+    }]);
 })();

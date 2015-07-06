@@ -2,28 +2,32 @@
     <h2>pay-calculator</h2>
 
     <div class="panel col-md-6">
-        <p>Base salary:</p><input type="number" ng-model="calc.baseSalary">
-        <p>Savings:</p><input type="number" ng-model="calc.savings" >
-        <p>Student loan:</p><input type="number" ng-model="calc.studentLoan">
+        <p>Base salary:</p><input type="number" ng-model="baseSalary">
+        <p>Savings:</p><input type="number" ng-model="savings" >
+        <p>Student loan:</p><input type="number" ng-model="studentLoan">
     </div>
 
     <div class="panel col-md-6">
-        <p>Base pay: {{calc.baseSalary | currency: "£"}}</p>
-        <p>Tax: {{calc.taxToPay() | currency: "£"}}</p>
-        <p>Monthly pay: {{calc.getMonthPay() | currency: "£"}}</p>
-        <p>Monthly tax: {{calc.getMonthlyTax() | currency: "£"}}</p>
+        <p>Base pay: {{baseSalary | currency: "£"}}</p>
+        <p>Tax: {{taxToPay() | currency: "£"}}</p>
+        <p>Monthly pay: {{getMonthPay() | currency: "£"}}</p>
+        <p>Monthly tax: {{getMonthlyTax() | currency: "£"}}</p>
 
-        <p>Initial savings: {{calc.savings | currency: "£"}}</p>
+        <p>Initial savings: {{savings | currency: "£"}}</p>
 
-        <p>Student loan: {{calc.studentLoan | currency: "£"}}</p>
+        <p>Student loan: {{studentLoan | currency: "£"}}</p>
 
-        <p>National insurance: {{calc.nationalInsurance() | currency: "£"}}</p>
+        <p>National insurance: {{nationalInsurance() | currency: "£"}}</p>
 
-        <p>Take home: {{calc.payInPocket() | currency: "£"}}</p>
-        <p>Take home monthly: {{calc.payInPocketMonthly() | currency: "£"}}</p>
+        <p>Take home: {{payInPocket() | currency: "£"}}</p>
+        <p>Take home monthly: {{payInPocketMonthly() | currency: "£"}}</p>
     </div>
 
-    <div class="panel col-md-6">
-        <canvas id="myChart" width="400" height="400"></canvas>
+    <div class="panel col-md-3">
+        <!--<canvas id="myChart" width="400" height="400"></canvas>-->
+
+        <canvas id="doughnut" class="chart chart-doughnut" data="data"
+                labels="labels"></canvas>
+        <button type="button" class="btn btn-primary pull-right" ng-click="newPie()">New Pie</button>
     </div>
 </div>

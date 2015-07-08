@@ -8,11 +8,13 @@
             templateUrl: 'public/views/calc.html',
             controller: function ($scope) {
 
-                $scope.baseSalary = 55000.0;
+                $scope.currency = "£";
+
+                $scope.baseSalary = 42378.96;
                 $scope.savings = 0.0;
                 $scope.studentLoan = 0.0;
-
-
+                $scope.rent = 625.0;
+                $scope.travelCard = 144.8;
 
                 $scope.getMonthPay = function() {
                     return $scope.baseSalary / 12;
@@ -66,23 +68,19 @@
                 };
 
                 $scope.payInPocket = function() {
-                    var pay = $scope.baseSalary - $scope.taxToPay() - $scope.nationalInsurance();
-                    return pay;
+                    return $scope.baseSalary - $scope.taxToPay() - $scope.nationalInsurance();
                 };
-
 
                 $scope.payInPocketMonthly = function() {
-                    var pay = $scope.payInPocket() / 12;
-                    return pay;
+                    return pay = $scope.payInPocket() / 12;
                 };
 
-
                 // pie chart
-                $scope.labels = ["Take home", "Total tax", "Pension", "Savings", "Rent"];
-                $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, 500];
+                $scope.labels = ["Take home", "Total tax", "Pension", "Savings", "Rent", "Travel card"];
+                $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, $scope.rent, $scope.travelCard];
 
                 $scope.newPie = function() {
-                    $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, 500];
+                    $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, $scope.rent, $scope.travelCard];
                 }
 
             },

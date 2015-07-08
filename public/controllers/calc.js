@@ -104,20 +104,20 @@
 
                 // pie chart
                 $scope.labels = ["What's left", "Total tax", "National insurance", "Savings", "Rent", "Travel card"];
-                $scope.data = [$scope.playMoneyMonthly(),
-                    $scope.getMonthlyTax(),
-                    $scope.getNationalInsuranceMonthly(),
-                    $scope.getMonthlySavings(),
-                    $scope.getRent(),
-                    $scope.getTravelCardValue()];
+                $scope.data = [$scope.playMoneyMonthly().toFixed(2),
+                    $scope.getMonthlyTax().toFixed(2),
+                    $scope.getNationalInsuranceMonthly().toFixed(2),
+                    $scope.getMonthlySavings().toFixed(2),
+                    $scope.getRent().toFixed(2),
+                    $scope.getTravelCardValue().toFixed(2)];
 
                 $scope.newPie = function() {
-                    $scope.data = [$scope.playMoneyMonthly(),
-                        $scope.getMonthlyTax(),
-                        $scope.getNationalInsuranceMonthly(),
-                        $scope.getMonthlySavings(),
-                        $scope.getRent(),
-                        $scope.getTravelCardValue()];
+                    $scope.data = [$scope.playMoneyMonthly().toFixed(2),
+                        $scope.getMonthlyTax().toFixed(2),
+                        $scope.getNationalInsuranceMonthly().toFixed(2),
+                        $scope.getMonthlySavings().toFixed(2),
+                        $scope.getRent().toFixed(2),
+                        $scope.getTravelCardValue().toFixed(2)];
                 }
 
             },

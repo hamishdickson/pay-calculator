@@ -78,11 +78,11 @@
 
 
                 // pie chart
-                $scope.labels = ["Take home", "Total tax", "Mail-Order Sales"];
-                $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100];
+                $scope.labels = ["Take home", "Total tax", "Pension", "Savings", "Rent"];
+                $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, 500];
 
                 $scope.newPie = function() {
-                    $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100];
+                    $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, 500];
                 }
 
             },

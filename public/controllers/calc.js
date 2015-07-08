@@ -12,13 +12,12 @@
 
                 $scope.baseSalary = 42378.96;
                 $scope.savings = 0.0;
-                $scope.monthlySavings = 0.0;
+                $scope.monthlySavings = 500.0;
                 $scope.studentLoan = 0.0;
                 $scope.rent = 625.0;
 
-                $scope.pensionContribution = 0.05;
-
                 $scope.travelCard = true;
+                $scope.pensionContrib = true;
 
                 const BASIC_RATE = 0.2;
                 const HIGHER_RATE = 0.4;
@@ -66,6 +65,14 @@
                     }
                 };
 
+                $scope.getPensionRate = function () {
+                    if ($scope.pensionContrib) {
+                        return 0.05;
+                    } else {
+                        return  0.0;
+                    }
+                };
+
                 $scope.getMonthPay = function() {
                     return $scope.baseSalary / 12;
                 };
@@ -105,7 +112,7 @@
                 };
 
                 $scope.payInPocket = function() {
-                    return $scope.baseSalary - $scope.taxToPay() - $scope.nationalInsuranceYearly() - $scope.pensionMonthly() - $scope.studentLoanPay();
+                    return $scope.baseSalary - $scope.taxToPay() - $scope.nationalInsuranceYearly() - $scope.pension() - $scope.studentLoanPay();
                 };
 
                 $scope.payInPocketMonthly = function() {
@@ -118,7 +125,7 @@
 
                 // note: pension comes out before tax etc
                 $scope.pension = function() {
-                    return $scope.baseSalary * $scope.pensionContribution;
+                    return $scope.baseSalary * $scope.getPensionRate();
                 };
 
                 $scope.pensionMonthly = function() {

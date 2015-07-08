@@ -28,10 +28,11 @@
                 const BASIC_BAND_MONTH = BASIC_BAND / 12.0;
                 const HIGHER_BAND_MONTH = HIGHER_BAND / 12.0;
 
-                const NATIONAL_INSURANCE_LOWER_LIMIT = 663.0;
-                const NATIONAL_INSURANCE_UPPER_LIMIT = 3488.33;
+                const NATIONAL_INSURANCE_LOWER_LIMIT = 8060.0;
+                const NATIONAL_INSURANCE_UPPER_LIMIT = 42380.0;
                 const NATIONAL_INSURANCE_LOWER_RATE = 0.12;
                 const NATIONAL_INSURANCE_UPPER_RATE = 0.02;
+
                 const ZONE_ONE_TO_THREE_TRAVEL_CARD = 144.8;
 
                 $scope.getTravelCardValue = function () {
@@ -63,7 +64,7 @@
                     return $scope.taxToPay() / 12;
                 };
 
-                $scope.nationalInsurance = function() {
+                $scope.nationalInsuranceYearly = function() {
                     var out = 0.0;
                     if ($scope.baseSalary > 0) {
                         if ($scope.baseSalary > NATIONAL_INSURANCE_UPPER_LIMIT) {
@@ -76,8 +77,12 @@
                     return out;
                 };
 
+                $scope.getNationalInsuranceMonthly = function() {
+                    return $scope.nationalInsuranceYearly() / 12;
+                };
+
                 $scope.payInPocket = function() {
-                    return $scope.baseSalary - $scope.taxToPay() - $scope.nationalInsurance();
+                    return $scope.baseSalary - $scope.taxToPay() - $scope.nationalInsuranceYearly();
                 };
 
                 $scope.payInPocketMonthly = function() {

@@ -14,11 +14,8 @@
                 $scope.savings = 0.0;
                 $scope.studentLoan = 0.0;
                 $scope.rent = 625.0;
-                $scope.travelCard = 144.8;
 
-                $scope.getMonthPay = function() {
-                    return $scope.baseSalary / 12;
-                };
+                $scope.travelCard = true;
 
                 var BASIC_RATE = 0.2;
                 var HIGHER_RATE = 0.4;
@@ -37,6 +34,18 @@
                 var NATIONAL_INSURANCE_LOWER_RATE = 0.12;
                 var NATIONAL_INSURANCE_UPPER_RATE = 0.02;
 
+                $scope.getTravelCardValue = function () {
+                    if ($scope.travelCard) {
+                        return 144.8;
+                    } else {
+                        return  0.0;
+                    }
+                };
+
+                $scope.getMonthPay = function() {
+                    return $scope.baseSalary / 12;
+                };
+                
                 $scope.taxToPay = function() {
                     var out = 0.0;
                     if ($scope.baseSalary > 0) {
@@ -77,10 +86,10 @@
 
                 // pie chart
                 $scope.labels = ["Take home", "Total tax", "Pension", "Savings", "Rent", "Travel card"];
-                $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, $scope.rent, $scope.travelCard];
+                $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, $scope.rent, $scope.getTravelCardValue()];
 
                 $scope.newPie = function() {
-                    $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, $scope.rent, $scope.travelCard];
+                    $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, $scope.rent, $scope.getTravelCardValue()];
                 }
 
             },

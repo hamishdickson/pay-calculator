@@ -12,6 +12,7 @@
 
                 $scope.baseSalary = 42378.96;
                 $scope.savings = 0.0;
+                $scope.monthlySavings = 0.0;
                 $scope.studentLoan = 0.0;
                 $scope.rent = 625.0;
 
@@ -21,7 +22,7 @@
                 const HIGHER_RATE = 0.4;
 
                 const PERSONAL_ALLOWANCE = 10000.0;
-                const BASIC_BAND = 31865.0 + PERSONAL_ALLOWANCE;
+                const BASIC_BAND = 31785.0 + PERSONAL_ALLOWANCE;
                 const HIGHER_BAND = 150000.0;
 
                 const PERSONAL_ALLOWANCE_MONTH = PERSONAL_ALLOWANCE / 12.0;
@@ -34,6 +35,14 @@
                 const NATIONAL_INSURANCE_UPPER_RATE = 0.02;
 
                 const ZONE_ONE_TO_THREE_TRAVEL_CARD = 144.8;
+
+                $scope.getMonthlySavings = function() {
+                    return $scope.monthlySavings;
+                };
+
+                $scope.getRent = function() {
+                    return $scope.rent;
+                };
 
                 $scope.getTravelCardValue = function () {
                     if ($scope.travelCard) {
@@ -50,11 +59,11 @@
                 $scope.taxToPay = function() {
                     var out = 0.0;
                     if ($scope.baseSalary > 0) {
-                        if ($scope.baseSalary > BASIC_BAND_MONTH) {
-                            out = (BASIC_BAND_MONTH - PERSONAL_ALLOWANCE_MONTH) * BASIC_RATE;
-                            out += ($scope.baseSalary - BASIC_BAND_MONTH) * HIGHER_RATE;
-                        } else if ($scope.baseSalary > PERSONAL_ALLOWANCE_MONTH) {
-                            out = ($scope.baseSalary - PERSONAL_ALLOWANCE_MONTH) * BASIC_RATE
+                        if ($scope.baseSalary > BASIC_BAND) {
+                            out = (BASIC_BAND - PERSONAL_ALLOWANCE) * BASIC_RATE;
+                            out += ($scope.baseSalary - BASIC_BAND) * HIGHER_RATE;
+                        } else if ($scope.baseSalary > PERSONAL_ALLOWANCE) {
+                            out = ($scope.baseSalary - PERSONAL_ALLOWANCE) * BASIC_RATE
                         }
                     }
                     return out;
@@ -89,12 +98,26 @@
                     return pay = $scope.payInPocket() / 12;
                 };
 
+                $scope.playMoneyMonthly = function() {
+                    return $scope.payInPocketMonthly() - $scope.getRent() - $scope.getMonthlySavings() - $scope.getTravelCardValue();
+                };
+
                 // pie chart
-                $scope.labels = ["Take home", "Total tax", "Pension", "Savings", "Rent", "Travel card"];
-                $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, $scope.rent, $scope.getTravelCardValue()];
+                $scope.labels = ["What's left", "Total tax", "National insurance", "Savings", "Rent", "Travel card"];
+                $scope.data = [$scope.playMoneyMonthly(),
+                    $scope.getMonthlyTax(),
+                    $scope.getNationalInsuranceMonthly(),
+                    $scope.getMonthlySavings(),
+                    $scope.getRent(),
+                    $scope.getTravelCardValue()];
 
                 $scope.newPie = function() {
-                    $scope.data = [$scope.payInPocketMonthly(), $scope.getMonthlyTax(), 100, 700, $scope.rent, $scope.getTravelCardValue()];
+                    $scope.data = [$scope.playMoneyMonthly(),
+                        $scope.getMonthlyTax(),
+                        $scope.getNationalInsuranceMonthly(),
+                        $scope.getMonthlySavings(),
+                        $scope.getRent(),
+                        $scope.getTravelCardValue()];
                 }
 
             },

@@ -17,26 +17,26 @@
 
                 $scope.travelCard = true;
 
-                var BASIC_RATE = 0.2;
-                var HIGHER_RATE = 0.4;
-                var ADDITIONAL_RATE = 0.45;
+                const BASIC_RATE = 0.2;
+                const HIGHER_RATE = 0.4;
 
-                var PERSONAL_ALLOWANCE = 10000.0;
-                var BASIC_BAND = 31865.0 + PERSONAL_ALLOWANCE;
-                var HIGHER_BAND = 150000.0;
+                const PERSONAL_ALLOWANCE = 10000.0;
+                const BASIC_BAND = 31865.0 + PERSONAL_ALLOWANCE;
+                const HIGHER_BAND = 150000.0;
 
-                var PERSONAL_ALLOWANCE_MONTH = PERSONAL_ALLOWANCE / 12.0;
-                var BASIC_BAND_MONTH = BASIC_BAND / 12.0;
-                var HIGHER_BAND_MONTH = HIGHER_BAND / 12.0;
+                const PERSONAL_ALLOWANCE_MONTH = PERSONAL_ALLOWANCE / 12.0;
+                const BASIC_BAND_MONTH = BASIC_BAND / 12.0;
+                const HIGHER_BAND_MONTH = HIGHER_BAND / 12.0;
 
-                var NATIONAL_INSURANCE_LOWER_LIMIT = 663.0;
-                var NATIONAL_INSURANCE_UPPER_LIMIT = 3488.33;
-                var NATIONAL_INSURANCE_LOWER_RATE = 0.12;
-                var NATIONAL_INSURANCE_UPPER_RATE = 0.02;
+                const NATIONAL_INSURANCE_LOWER_LIMIT = 663.0;
+                const NATIONAL_INSURANCE_UPPER_LIMIT = 3488.33;
+                const NATIONAL_INSURANCE_LOWER_RATE = 0.12;
+                const NATIONAL_INSURANCE_UPPER_RATE = 0.02;
+                const ZONE_ONE_TO_THREE_TRAVEL_CARD = 144.8;
 
                 $scope.getTravelCardValue = function () {
                     if ($scope.travelCard) {
-                        return 144.8;
+                        return ZONE_ONE_TO_THREE_TRAVEL_CARD;
                     } else {
                         return  0.0;
                     }
@@ -45,7 +45,7 @@
                 $scope.getMonthPay = function() {
                     return $scope.baseSalary / 12;
                 };
-                
+
                 $scope.taxToPay = function() {
                     var out = 0.0;
                     if ($scope.baseSalary > 0) {

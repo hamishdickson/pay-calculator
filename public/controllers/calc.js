@@ -16,6 +16,8 @@
                 $scope.studentLoan = 0.0;
                 $scope.rent = 625.0;
 
+                $scope.pensionContribution = 0.05;
+
                 $scope.travelCard = true;
 
                 const BASIC_RATE = 0.2;
@@ -25,16 +27,28 @@
                 const BASIC_BAND = 31785.0 + PERSONAL_ALLOWANCE;
                 const HIGHER_BAND = 150000.0;
 
-                const PERSONAL_ALLOWANCE_MONTH = PERSONAL_ALLOWANCE / 12.0;
-                const BASIC_BAND_MONTH = BASIC_BAND / 12.0;
-                const HIGHER_BAND_MONTH = HIGHER_BAND / 12.0;
-
                 const NATIONAL_INSURANCE_LOWER_LIMIT = 8060.0;
                 const NATIONAL_INSURANCE_UPPER_LIMIT = 42380.0;
                 const NATIONAL_INSURANCE_LOWER_RATE = 0.12;
                 const NATIONAL_INSURANCE_UPPER_RATE = 0.02;
 
+                const STUDENT_LOAN_INTEREST_RATE = 0.015;
+                const STUDENT_LOAN_RATE = 0.09;
+                const STUDENT_LOAN_BAND = 16910.0;
+
                 const ZONE_ONE_TO_THREE_TRAVEL_CARD = 144.8;
+
+                $scope.studentLoanPay = function() {
+                    var out = 0.0;
+                    if ($scope.baseSalary > STUDENT_LOAN_BAND) {
+                        out = ($scope.baseSalary - STUDENT_LOAN_BAND) * STUDENT_LOAN_RATE
+                    }
+                    return out;
+                };
+
+                $scope.studentLoanMonthly = function() {
+                    return $scope.studentLoanPay() / 12;
+                };
 
                 $scope.getMonthlySavings = function() {
                     return $scope.monthlySavings;
@@ -91,22 +105,34 @@
                 };
 
                 $scope.payInPocket = function() {
-                    return $scope.baseSalary - $scope.taxToPay() - $scope.nationalInsuranceYearly();
+                    return $scope.baseSalary - $scope.taxToPay() - $scope.nationalInsuranceYearly() - $scope.pensionMonthly() - $scope.studentLoanPay();
                 };
 
                 $scope.payInPocketMonthly = function() {
-                    return pay = $scope.payInPocket() / 12;
+                    return $scope.payInPocket() / 12;
                 };
 
                 $scope.playMoneyMonthly = function() {
                     return $scope.payInPocketMonthly() - $scope.getRent() - $scope.getMonthlySavings() - $scope.getTravelCardValue();
                 };
 
+                // note: pension comes out before tax etc
+                $scope.pension = function() {
+                    return $scope.baseSalary * $scope.pensionContribution;
+                };
+
+                $scope.pensionMonthly = function() {
+                    return $scope.pension() / 12;
+                };
+
+
                 // pie chart
-                $scope.labels = ["What's left", "Total tax", "National insurance", "Savings", "Rent", "Travel card"];
+                $scope.labels = ["What's left", "Total tax", "National insurance", "Pension", "Student loan", "Savings", "Rent", "Travel card"];
                 $scope.data = [$scope.playMoneyMonthly().toFixed(2),
                     $scope.getMonthlyTax().toFixed(2),
                     $scope.getNationalInsuranceMonthly().toFixed(2),
+                    $scope.pensionMonthly().toFixed(2),
+                    $scope.studentLoanMonthly().toFixed(2),
                     $scope.getMonthlySavings().toFixed(2),
                     $scope.getRent().toFixed(2),
                     $scope.getTravelCardValue().toFixed(2)];
@@ -115,6 +141,8 @@
                     $scope.data = [$scope.playMoneyMonthly().toFixed(2),
                         $scope.getMonthlyTax().toFixed(2),
                         $scope.getNationalInsuranceMonthly().toFixed(2),
+                        $scope.pensionMonthly().toFixed(2),
+                        $scope.studentLoanMonthly().toFixed(2),
                         $scope.getMonthlySavings().toFixed(2),
                         $scope.getRent().toFixed(2),
                         $scope.getTravelCardValue().toFixed(2)];

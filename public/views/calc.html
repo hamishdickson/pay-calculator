@@ -30,8 +30,9 @@
         <h3>Tax, NI and student loans</h3>
         <p>Tax: {{taxToPay() | currency: currency}}</p>
         <p>Monthly tax: {{getMonthlyTax() | currency: currency}}</p>
-        <p>Student loan: {{studentLoan | currency: currency}}</p>
+        <p>Student loan payment: {{studentLoanMonthly() | currency: currency}}</p>
         <p>National insurance (yearly): {{nationalInsuranceYearly() | currency: currency}}</p>
+        <p>National insurance (monthly): {{getNationalInsuranceMonthly() | currency: currency}}</p>
 
     </div>
 
@@ -42,8 +43,10 @@
     </div>
 
     <div class="panel col-md-6">
-        <h3>Savings</h3>
+        <h3>Savings and pension</h3>
         <p>Initial savings: {{savings | currency: currency}}</p>
+        <p>Monthly savings: {{monthlySavings | currency: currency}}</p>
+        <p>Pension: {{pensionMonthly() | currency: currency}}</p>
     </div>
 
 </div>

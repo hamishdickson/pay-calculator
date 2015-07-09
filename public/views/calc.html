@@ -2,6 +2,7 @@
     <h2>pay-calculator</h2>
 
     <div class="panel col-md-6">
+        <h3>About me</h3>
         <p>Base salary: <input type="number" ng-model="baseSalary"></p>
         <p>Savings: <input type="number" ng-model="savings"></p>
         <p>Monthly savings: <input type="number" ng-model="monthlySavings"></p>
@@ -13,8 +14,8 @@
     <div class="panel col-md-3">
         <h3>Summary</h3>
 
-        <canvas id="doughnut" class="chart chart-doughnut" data="data"
-                labels="labels"></canvas>
+        <canvas id="doughnut" class="chart chart-doughnut" data="summaryData"
+                labels="summaryLabels"></canvas>
         <button type="button" class="btn btn-primary pull-right" ng-click="newPie()">New Pie</button>
     </div>
 

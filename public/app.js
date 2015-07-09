@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('CalcApp', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
-                                         'main-calc-controller', 'calc-directive', 'chart.js']);
+                                         'main-controller', 'calc-directive', 'chart.js']);
 
     app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
         $locationProvider.html5Mode(true);

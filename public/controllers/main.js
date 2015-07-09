@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('main-calc-controller', []);
+    var app = angular.module('main-controller', []);
 
     app.controller('MainCalcController', function () {
 

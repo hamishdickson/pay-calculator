@@ -153,6 +153,18 @@
                         $scope.getMonthlySavings().toFixed(2),
                         $scope.getRent().toFixed(2),
                         $scope.getTravelCardValue().toFixed(2)];
+
+
+                    $scope.studentLoanData = [
+                        [$scope.studentLoan,
+                            $scope.getRemainingStudentLoan(6.0),
+                            $scope.getRemainingStudentLoan(12.0),
+                            $scope.getRemainingStudentLoan(18.0),
+                            $scope.getRemainingStudentLoan(24.0),
+                            $scope.getRemainingStudentLoan(30.0),
+                            $scope.getRemainingStudentLoan(36.0),
+                            $scope.getRemainingStudentLoan(42.0)]
+                    ];
                 };
 
                 $scope.getRemainingStudentLoan = function(period) {
@@ -169,7 +181,14 @@
                     return out;
                 };
 
-                $scope.studentLoanLabels = ["Now", "6 months", "12 months", "18 months", "24 months", "30 months", "36 months", "42 months"];
+                $scope.studentLoanLabels = ["Now",
+                    "6 months",
+                    "12 months",
+                    "18 months",
+                    "24 months",
+                    "30 months",
+                    "36 months",
+                    "42 months"];
                 $scope.studentLoanSeries = ["Remaining loan"];
                 $scope.studentLoanData = [
                     [$scope.studentLoan,

@@ -155,13 +155,18 @@
                         $scope.getTravelCardValue().toFixed(2)];
                 };
 
-
                 $scope.getRemainingStudentLoan = function(period) {
-                    var out = $scope.studentLoan - period * $scope.studentLoanMonthly();
-                    if (out > 0) {
-                        return out;
+                    var out = $scope.studentLoan;
+                    for (var i = 1; i <= period; i++) {
+                        if (period % 12 === 0) {
+                            out = out * (1 + STUDENT_LOAN_INTEREST_RATE);
+                        }
+                        if (out > $scope.studentLoanMonthly()) {
+                            out = out - $scope.studentLoanMonthly();
+                        } else out = 0.0;
                     }
-                    return 0.0;
+
+                    return out;
                 };
 
                 $scope.studentLoanLabels = ["Now", "6 months", "12 months", "18 months", "24 months", "30 months", "36 months", "42 months"];

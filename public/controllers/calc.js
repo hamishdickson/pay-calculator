@@ -37,6 +37,9 @@
 
                 const ZONE_ONE_TO_THREE_TRAVEL_CARD = 144.8;
 
+                // pathetic...
+                const INTEREST_RATE = 0.01;
+
                 $scope.studentLoanPay = function() {
                     var out = 0.0;
                     if ($scope.baseSalary > STUDENT_LOAN_BAND) {
@@ -132,6 +135,28 @@
                     return $scope.pension() / 12;
                 };
 
+                $scope.getRemainingStudentLoan = function(period) {
+                    var out = $scope.studentLoan;
+                    for (var i = 1; i <= period; i++) {
+                        if (period % 12 === 0) {
+                            out = out * (1 + STUDENT_LOAN_INTEREST_RATE);
+                        }
+                        if (out > $scope.studentLoanMonthly()) {
+                            out = out - $scope.studentLoanMonthly();
+                        } else out = 0.0;
+                    }
+
+                    return out.toFixed(2);
+                };
+
+                $scope.getSavings = function(period) {
+                    var out = $scope.savings;
+                    for (var i = 1; i <= period; i++) {
+                        out = out * (1 + INTEREST_RATE);
+                        out = out + $scope.monthlySavings;
+                    }
+                    return out;
+                };
 
                 // pie chart
                 $scope.summaryLabels = ["What's left", "Total tax", "National insurance", "Pension", "Student loan", "Savings", "Rent", "Travel card"];
@@ -165,20 +190,6 @@
                             $scope.getRemainingStudentLoan(36.0),
                             $scope.getRemainingStudentLoan(42.0)]
                     ];
-                };
-
-                $scope.getRemainingStudentLoan = function(period) {
-                    var out = $scope.studentLoan;
-                    for (var i = 1; i <= period; i++) {
-                        if (period % 12 === 0) {
-                            out = out * (1 + STUDENT_LOAN_INTEREST_RATE);
-                        }
-                        if (out > $scope.studentLoanMonthly()) {
-                            out = out - $scope.studentLoanMonthly();
-                        } else out = 0.0;
-                    }
-
-                    return out;
                 };
 
                 $scope.studentLoanLabels = ["Now",

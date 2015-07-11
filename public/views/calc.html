@@ -54,6 +54,8 @@
         <h3>Savings and pension</h3>
         <p>Initial savings: {{savings | currency: currency}}</p>
         <p>Monthly savings: {{monthlySavings | currency: currency}}</p>
+        <p>1 year savings: {{getSavings(12) | currency: currency}}</p>
+        <p>3 year savings: {{getSavings(36) | currency: currency}}</p>
         <p>Pension: {{pensionMonthly() | currency: currency}}</p>
     </div>
 

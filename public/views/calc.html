@@ -9,6 +9,7 @@
         <p>Student loan: <input type="number" ng-model="studentLoan"></p>
         <p>Tavel card (1-3): <input type="checkbox" ng-model="travelCard"></p>
         <p>Pension (5%): <input type="checkbox" ng-model="pensionContrib"></p>
+        <button type="button" class="btn btn-primary" ng-click="newPie()">New charts</button>
     </div>
 
     <div class="panel col-md-3">
@@ -16,7 +17,6 @@
 
         <canvas id="doughnut" class="chart chart-doughnut" data="summaryData"
                 labels="summaryLabels"></canvas>
-        <button type="button" class="btn btn-primary pull-right" ng-click="newPie()">New Pie</button>
     </div>
 
     <div class="panel col-md-6">

@@ -152,7 +152,8 @@
                 $scope.getSavings = function(period) {
                     var out = $scope.savings;
                     for (var i = 1; i <= period; i++) {
-                        out = out * (1 + INTEREST_RATE);
+                        // basic version of interest
+                        out = out * (1 + INTEREST_RATE / 12);
                         out = out + $scope.monthlySavings;
                     }
                     return out.toFixed(2);

@@ -57,6 +57,11 @@
         <p>1 year savings: {{getSavings(12) | currency: currency}}</p>
         <p>3 year savings: {{getSavings(36) | currency: currency}}</p>
         <p>Pension: {{pensionMonthly() | currency: currency}}</p>
+
+        <canvas id="savingsLine" class="chart chart-line" data="savingsData"
+                labels="savingsLabels" legend="true" series="savingsSeries"
+                click="onClick">
+        </canvas>
     </div>
 
 </div>

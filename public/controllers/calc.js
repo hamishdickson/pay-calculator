@@ -11,7 +11,7 @@
                 $scope.currency = "£";
 
                 $scope.baseSalary = 42378.96;
-                $scope.savings = 0.0;
+                $scope.savings = 9000.0;
                 $scope.monthlySavings = 500.0;
                 $scope.studentLoan = 6770.0;
                 $scope.rent = 625.0;
@@ -155,7 +155,7 @@
                         out = out * (1 + INTEREST_RATE);
                         out = out + $scope.monthlySavings;
                     }
-                    return out;
+                    return out.toFixed(2);
                 };
 
                 // pie chart
@@ -190,6 +190,17 @@
                             $scope.getRemainingStudentLoan(36.0),
                             $scope.getRemainingStudentLoan(42.0)]
                     ];
+
+                    $scope.savingsData = [
+                        [$scope.savings,
+                            $scope.getSavings(6.0),
+                            $scope.getSavings(12.0),
+                            $scope.getSavings(18.0),
+                            $scope.getSavings(24.0),
+                            $scope.getSavings(30.0),
+                            $scope.getSavings(36.0),
+                            $scope.getSavings(42.0)]
+                    ];
                 };
 
                 $scope.studentLoanLabels = ["Now",
@@ -210,6 +221,26 @@
                         $scope.getRemainingStudentLoan(30.0),
                         $scope.getRemainingStudentLoan(36.0),
                         $scope.getRemainingStudentLoan(42.0)]
+                ];
+
+                $scope.savingsLabels = ["Now",
+                    "6 months",
+                    "12 months",
+                    "18 months",
+                    "24 months",
+                    "30 months",
+                    "36 months",
+                    "42 months"];
+                $scope.savingsSeries = ["Savings"];
+                $scope.savingsData = [
+                    [$scope.savings,
+                        $scope.getSavings(6.0),
+                        $scope.getSavings(12.0),
+                        $scope.getSavings(18.0),
+                        $scope.getSavings(24.0),
+                        $scope.getSavings(30.0),
+                        $scope.getSavings(36.0),
+                        $scope.getSavings(42.0)]
                 ];
             },
             controllerAs: "calc"

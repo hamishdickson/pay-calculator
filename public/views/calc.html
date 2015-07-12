@@ -1,0 +1,67 @@
+<div>
+    <h2>pay-calculator</h2>
+
+    <div class="panel col-md-6">
+        <h3>About me</h3>
+        <p>Base salary: <input type="number" ng-model="baseSalary"></p>
+        <p>Savings: <input type="number" ng-model="savings"></p>
+        <p>Monthly savings: <input type="number" ng-model="monthlySavings"></p>
+        <p>Student loan: <input type="number" ng-model="studentLoan"></p>
+        <p>Tavel card (1-3): <input type="checkbox" ng-model="travelCard"></p>
+        <p>Pension (5%): <input type="checkbox" ng-model="pensionContrib"></p>
+        <button type="button" class="btn btn-primary" ng-click="newPie()">New charts</button>
+    </div>
+
+    <div class="panel col-md-3">
+        <h3>Summary</h3>
+
+        <canvas id="doughnut" class="chart chart-doughnut" data="summaryData"
+                labels="summaryLabels"></canvas>
+    </div>
+
+    <div class="panel col-md-6">
+        <h3>Pay</h3>
+        <p>Base pay: {{baseSalary | currency: currency}}</p>
+        <p>Monthly pay: {{getMonthPay() | currency: currency}}</p>
+
+        <p>Take home: {{payInPocket() | currency: "£"}}</p>
+        <p>Take home monthly: {{payInPocketMonthly() | currency: currency}}</p>
+    </div>
+
+    <div class="panel col-md-6">
+        <h3>Tax, NI and student loans</h3>
+        <p>Tax: {{taxToPay() | currency: currency}}</p>
+        <p>Tax (monthly): {{getMonthlyTax() | currency: currency}}</p>
+        <p>Student loan (yearly): {{studentLoanPay() | currency: currency}}</p>
+        <p>Student loan (monthly): {{studentLoanMonthly() | currency: currency}}</p>
+        <p>National insurance (yearly): {{nationalInsuranceYearly() | currency: currency}}</p>
+        <p>National insurance (monthly): {{getNationalInsuranceMonthly() | currency: currency}}</p>
+
+        <canvas id="line" class="chart chart-line" data="studentLoanData"
+                labels="studentLoanLabels" legend="true" series="studentLoanSeries"
+                click="onClick">
+        </canvas>
+
+    </div>
+
+    <div class="panel col-md-6">
+        <h3>Rent, tube travel, etc</h3>
+        <p>Rent: {{rent | currency: currency}}</p>
+        <p>Travel card: {{getTravelCardValue() | currency: currency}}</p>
+    </div>
+
+    <div class="panel col-md-6">
+        <h3>Savings and pension</h3>
+        <p>Initial savings: {{savings | currency: currency}}</p>
+        <p>Monthly savings: {{monthlySavings | currency: currency}}</p>
+        <p>1 year savings: {{getSavings(12) | currency: currency}}</p>
+        <p>3 year savings: {{getSavings(36) | currency: currency}}</p>
+        <p>Pension: {{pensionMonthly() | currency: currency}}</p>
+
+        <canvas id="savingsLine" class="chart chart-line" data="savingsData"
+                labels="savingsLabels" legend="true" series="savingsSeries"
+                click="onClick">
+        </canvas>
+    </div>
+
+</div>

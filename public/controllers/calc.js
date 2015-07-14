@@ -10,11 +10,11 @@
 
                 $scope.currency = "£";
 
-                $scope.baseSalary = 42378.96;
-                $scope.savings = 9000.0;
-                $scope.monthlySavings = 500.0;
-                $scope.studentLoan = 6770.0;
-                $scope.rent = 625.0;
+                $scope.baseSalary = 0.0;
+                $scope.savings = 0.0;
+                $scope.monthlySavings = 0.0;
+                $scope.studentLoan = 0.0;
+                $scope.rent = 0.0;
 
                 $scope.travelCard = true;
                 $scope.pensionContrib = true;
@@ -38,7 +38,7 @@
                 const ZONE_ONE_TO_THREE_TRAVEL_CARD = 144.8;
 
                 // pathetic...
-                const INTEREST_RATE = 0.01;
+                $scope.interestRate = 0.01;
 
                 $scope.studentLoanPay = function() {
                     var out = 0.0;
@@ -153,7 +153,7 @@
                     var out = $scope.savings;
                     for (var i = 1; i <= period; i++) {
                         // basic version of interest
-                        out = out * (1 + INTEREST_RATE / 12);
+                        out = out * (1 + $scope.interestRate / 12);
                         out = out + $scope.monthlySavings;
                     }
                     return out.toFixed(2);

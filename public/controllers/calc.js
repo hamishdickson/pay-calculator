@@ -42,8 +42,10 @@
 
                 $scope.studentLoanPay = function() {
                     var out = 0.0;
-                    if ($scope.baseSalary > STUDENT_LOAN_BAND) {
-                        out = ($scope.baseSalary - STUDENT_LOAN_BAND) * STUDENT_LOAN_RATE
+                    if ($scope.studentLoan > 0.0) {
+                        if ($scope.baseSalary > STUDENT_LOAN_BAND) {
+                            out = ($scope.baseSalary - STUDENT_LOAN_BAND) * STUDENT_LOAN_RATE
+                        }
                     }
                     return out;
                 };

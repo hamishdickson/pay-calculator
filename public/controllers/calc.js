@@ -216,7 +216,7 @@
                     "42 months"];
                 $scope.studentLoanSeries = ["Remaining loan"];
                 $scope.studentLoanData = [
-                    [$scope.studentLoan,
+                    [   $scope.studentLoan,
                         $scope.getRemainingStudentLoan(6.0),
                         $scope.getRemainingStudentLoan(12.0),
                         $scope.getRemainingStudentLoan(18.0),
@@ -226,7 +226,7 @@
                         $scope.getRemainingStudentLoan(42.0)]
                 ];
 
-                $scope.savingsLabels = ["0",
+                $scope.savingsLabels = [
                     "Now",
                     "6 months",
                     "12 months",
@@ -237,8 +237,7 @@
                     "42 months"];
                 $scope.savingsSeries = ["Savings"];
                 $scope.savingsData = [
-                    [0.0,
-                        $scope.savings,
+                    [   $scope.savings,
                         $scope.getSavings(6.0),
                         $scope.getSavings(12.0),
                         $scope.getSavings(18.0),
